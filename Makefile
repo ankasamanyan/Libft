@@ -6,7 +6,7 @@
 #    By: ankasamanyan <ankasamanyan@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/05 01:24:17 by ankasamanya       #+#    #+#              #
-#    Updated: 2022/04/07 12:51:43 by ankasamanya      ###   ########.fr        #
+#    Updated: 2022/04/07 13:15:55 by ankasamanya      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,39 +63,34 @@ BONUS =	ft_lstnew.c \
 
 BONUS_OBJ =$(BONUS:.c=.o)
 
-# PRINTF =	ft_printf/ft_counthex.c \
-# 			ft_printf/ft_intlen.c \
-# 			ft_printf/ft_printu.c \
-# 			ft_printf/ft_putchar.c \
-# 			ft_printf/ft_putstr.c \
-# 			ft_printf/ft_printf.c \
-# 			ft_printf/ft_printp.c \
-# 			ft_printf/ft_printx.c \
-# 			ft_printf/ft_putnbr.c \
+PRINTF =	ft_printf/ft_counthex.c \
+			ft_printf/ft_intlen.c \
+			ft_printf/ft_printu.c \
+			ft_printf/ft_putchar.c \
+			ft_printf/ft_putstr.c \
+			ft_printf/ft_printf.c \
+			ft_printf/ft_printp.c \
+			ft_printf/ft_printx.c \
+			ft_printf/ft_putnbr.c \
 
-PRINTF =	./ft_printf/ft_printf.a
+PRINTF_OBJ =$(PRINTF:.c=.o)
 
-GNL =	./get_next_line/get_next_line.a
+GNL =	get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c \
+
+GNL_OBJ =$(GNL:.c=.o)
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-all: $(NAME) $(PRINTF) $(GNL)
+all: $(NAME) $(PRINTF) $(GNL) $(BONUS)
 
-$(PRINTF):
-	$(MAKE) -C ft_printf
-
-$(GNL):
-	$(MAKE) -C get_next_line
-
-$(NAME): $(OBJ)
-	ar rsc $(NAME) $(PRINTF) $(GNL) $(OBJ)
+$(NAME): $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
+	ar rsc $(NAME) $(PRINTF) $(GNL) $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
 
 clean:
-	$(MAKE) fclean -C ft_printf
-	$(MAKE) fclean -C get_next_line
-	$(RM) $(OBJ) $(BONUS_OBJ)
+	$(RM) $(OBJ) $(BONUS_OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
