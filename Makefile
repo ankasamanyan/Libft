@@ -6,7 +6,7 @@
 #    By: ankasamanyan <ankasamanyan@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/05 01:24:17 by ankasamanya       #+#    #+#              #
-#    Updated: 2022/04/07 13:15:55 by ankasamanya      ###   ########.fr        #
+#    Updated: 2022/04/07 15:28:18 by ankasamanya      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,19 @@ SRC =	ft_strnstr.c \
 		ft_itoa.c \
 		ft_tolower.c \
 		ft_strrev.c \
-		ft_intlen.c
+		ft_intlen.c \
+		ft_printf/ft_counthex.c \
+		ft_printf/ft_intlen.c \
+		ft_printf/ft_printu.c \
+		ft_printf/ft_putchar.c \
+		ft_printf/ft_putstr.c \
+		ft_printf/ft_printf.c \
+		ft_printf/ft_printp.c \
+		ft_printf/ft_printx.c \
+		ft_printf/ft_putnbr.c \
+		get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c \
+
 
 OBJ = $(SRC:.c=.o)
 
@@ -63,34 +75,17 @@ BONUS =	ft_lstnew.c \
 
 BONUS_OBJ =$(BONUS:.c=.o)
 
-PRINTF =	ft_printf/ft_counthex.c \
-			ft_printf/ft_intlen.c \
-			ft_printf/ft_printu.c \
-			ft_printf/ft_putchar.c \
-			ft_printf/ft_putstr.c \
-			ft_printf/ft_printf.c \
-			ft_printf/ft_printp.c \
-			ft_printf/ft_printx.c \
-			ft_printf/ft_putnbr.c \
-
-PRINTF_OBJ =$(PRINTF:.c=.o)
-
-GNL =	get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
-
-GNL_OBJ =$(GNL:.c=.o)
-
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-all: $(NAME) $(PRINTF) $(GNL) $(BONUS)
+all: $(NAME) $(BONUS)
 
-$(NAME): $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
-	ar rsc $(NAME) $(PRINTF) $(GNL) $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
+$(NAME): $(OBJ)
+	ar rsc $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJ) $(BONUS_OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
+	$(RM) $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
