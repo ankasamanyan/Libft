@@ -6,7 +6,7 @@
 #    By: ankasamanyan <ankasamanyan@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/05 01:24:17 by ankasamanya       #+#    #+#              #
-#    Updated: 2021/12/18 20:10:10 by ankasamanya      ###   ########.fr        #
+#    Updated: 2022/04/07 12:51:43 by ankasamanya      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,16 +63,38 @@ BONUS =	ft_lstnew.c \
 
 BONUS_OBJ =$(BONUS:.c=.o)
 
+# PRINTF =	ft_printf/ft_counthex.c \
+# 			ft_printf/ft_intlen.c \
+# 			ft_printf/ft_printu.c \
+# 			ft_printf/ft_putchar.c \
+# 			ft_printf/ft_putstr.c \
+# 			ft_printf/ft_printf.c \
+# 			ft_printf/ft_printp.c \
+# 			ft_printf/ft_printx.c \
+# 			ft_printf/ft_putnbr.c \
+
+PRINTF =	./ft_printf/ft_printf.a
+
+GNL =	./get_next_line/get_next_line.a
+
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-all: $(NAME)
+all: $(NAME) $(PRINTF) $(GNL)
+
+$(PRINTF):
+	$(MAKE) -C ft_printf
+
+$(GNL):
+	$(MAKE) -C get_next_line
 
 $(NAME): $(OBJ)
-	ar rsc $(NAME) $(OBJ)
+	ar rsc $(NAME) $(PRINTF) $(GNL) $(OBJ)
 
 clean:
+	$(MAKE) fclean -C ft_printf
+	$(MAKE) fclean -C get_next_line
 	$(RM) $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
