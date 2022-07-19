@@ -6,7 +6,7 @@
 #    By: akasaman <akasaman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/05 01:24:17 by ankasamanya       #+#    #+#              #
-#    Updated: 2022/07/18 18:13:53 by akasaman         ###   ########.fr        #
+#    Updated: 2022/07/19 16:17:51 by akasaman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,10 +81,11 @@ all: $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "\033[92m.\033[0m\c"
 
 $(NAME): $(OBJ)
 	@ar rsc $(NAME) $(OBJ)
-	@echo "\033[92mLibft successfully compiled!\033[0m"
+	@echo "\n\033[92mLibft successfully compiled!\033[0m"
 
 
 clean:
