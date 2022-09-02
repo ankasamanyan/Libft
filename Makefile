@@ -6,7 +6,7 @@
 #    By: akasaman <akasaman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/05 01:24:17 by ankasamanya       #+#    #+#              #
-#    Updated: 2022/07/19 16:17:51 by akasaman         ###   ########.fr        #
+#    Updated: 2022/09/02 14:28:36 by akasaman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ all: $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "\033[92m.\033[0m\c"
+	@echo "\033[92m•\033[0m\c"
 
 $(NAME): $(OBJ)
 	@ar rsc $(NAME) $(OBJ)
